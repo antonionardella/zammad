@@ -15,6 +15,7 @@ class Integration::CheckMkController < ApplicationController
     auto_close = Setting.get('check_mk_auto_close')
     auto_close_state_id = Setting.get('check_mk_auto_close_state_id')
     group_id = Setting.get('check_mk_group_id')
+    fallback_customer_id = Setting.get('check_mk_fallback_customer_id')
     state_recovery_match = '(OK|UP)'
 
     # follow-up detection by meta data
@@ -101,7 +102,7 @@ UserAgent: #{request.env['HTTP_USER_AGENT'] || '-'}
       end
     end
     if !customer
-      customer = User.lookup(id: 1)
+      customer = User.lookup(id: fallback_customer_id)
     end
 
     params[:state] = nil

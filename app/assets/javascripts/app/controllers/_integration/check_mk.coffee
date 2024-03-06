@@ -30,7 +30,7 @@ class State
 
 class Form extends App.Controller
   events:
-    'click .js-tabItem': 'toogle'
+    'click .js-tabItem': 'toggle'
     'click .js-select': 'selectAll'
 
   constructor: ->

@@ -4588,6 +4588,54 @@ Setting.create_if_not_exists(
   },
   frontend:    false
 )
+Checkmk integration'),
+  name:        'check_mk_integration',
+  area:        'Integration::Switch',
+  description: __('Defines if Checkmk (https://checkmk.com/) is enabled or not.'),
+  options:     {
+    form: [
+      {
+        display: '',
+        null:    true,
+        name:    'check_mk_integration',
+        tag:     'boolean',
+        options: {
+          true  => 'yes',
+          false => 'no',
+        },
+      },
+    ],
+  },
+  state:       false,
+  preferences: {
+    prio:       1,
+    permission: ['admin.integration'],
+  },
+  frontend:    false
+)
+Setting.create_if_not_exists(
+  title:       __('Fallback Customer'),
+  name:        'check_mk_fallback_customer_id',
+  area:        'Integration::CheckMK',
+  description: __('Defines the fallback customer of created tickets.'),
+  options:     {
+    form: [
+      {
+        display:  '',
+        null:     false,
+        name:     'check_mk_fallback_customer_id',
+        tag:      'select',
+        relation: 'Customer',
+      },
+    ],
+  },
+  state:       1,
+  preferences: {
+    prio:       2,
+    permission: ['admin.integration'],
+  },
+  frontend:    false
+)
 Setting.create_if_not_exists(
   title:       __('Checkmk token'),
   name:        'check_mk_token',
